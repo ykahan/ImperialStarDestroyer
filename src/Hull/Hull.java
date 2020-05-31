@@ -14,10 +14,10 @@ public class Hull {
     }
 
     public void displayHullSpecs(){
-        System.out.println(this.FwdHull.toString());
-        System.out.println(this.MidHull.toString());
-        System.out.println(this.AftHull.toString());
-        System.out.println(this.Superstructure.toString());
+       this.getSuperstructure().displaySectionInfo();
+       this.getFwdHull().displaySectionInfo();
+       this.getMidHull().displaySectionInfo();
+       this.getAftHull().displaySectionInfo();
 
     }
 
@@ -45,7 +45,7 @@ public class Hull {
         AftHull = aftHull;
     }
 
-    public Hull.Superstructure getSuperstructure() {
+    public Superstructure getSuperstructure() {
         return Superstructure;
     }
 
