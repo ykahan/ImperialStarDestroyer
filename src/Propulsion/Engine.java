@@ -1,6 +1,6 @@
 package Propulsion;
 
-public class Engine {
+public abstract class Engine {
     private String IDNumber;
     private String EngineType;
     private int CostToBuild;
@@ -9,10 +9,16 @@ public class Engine {
     private int FuelCapacity;
     private boolean Installed;
 
-    public Engine(String id){
+    public Engine(String id, int CostToBuild, int MaxThrust, int Weight, int FuelCapacity, boolean Installed){
         this.IDNumber = id;
+        this.CostToBuild = CostToBuild;
+        this.MaxThrust = MaxThrust;
+        this.Weight = Weight;
+        this.FuelCapacity = FuelCapacity;
+        this.Installed = Installed;
     }
 
+    @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("\nEngine Type: " + EngineType);

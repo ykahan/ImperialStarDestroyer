@@ -4,52 +4,25 @@ public class Hull {
     private FwdHullSection FwdHull;
     private MidHullSection MidHull;
     private AftHullSection AftHull;
-    private static Superstructure Superstructure;
+    private Superstructure Bridge;
+    private int Weight;
+    private int CostToBuild;
 
-    public Hull(FwdHullSection fwdHull, MidHullSection midHull, AftHullSection aftHull, Superstructure superstructure){
+    public Hull(FwdHullSection fwdHull, MidHullSection midHull, AftHullSection aftHull, Superstructure bridge){
         this.FwdHull = fwdHull;
         this.MidHull = midHull;
         this.AftHull = aftHull;
-        this.Superstructure = superstructure;
+        this.Bridge = bridge;
+        this.CostToBuild = FwdHull.getCostToBuild() +
+                MidHull.getCostToBuild() + AftHull.getCostToBuild()
+                + Bridge.getCostToBuild();
+        this.Weight = FwdHull.getWeight() + MidHull.getWeight() + AftHull.getWeight() + Bridge.getWeight();
     }
 
     public void displayHullSpecs(){
-       this.getSuperstructure().displaySectionInfo();
-       this.getFwdHull().displaySectionInfo();
-       this.getMidHull().displaySectionInfo();
-       this.getAftHull().displaySectionInfo();
-
-    }
-
-    public FwdHullSection getFwdHull() {
-        return FwdHull;
-    }
-
-    public void setFwdHull(FwdHullSection fwdHull) {
-        FwdHull = fwdHull;
-    }
-
-    public MidHullSection getMidHull() {
-        return MidHull;
-    }
-
-    public void setMidHull(MidHullSection midHull) {
-        MidHull = midHull;
-    }
-
-    public AftHullSection getAftHull() {
-        return AftHull;
-    }
-
-    public void setAftHull(AftHullSection aftHull) {
-        AftHull = aftHull;
-    }
-
-    public Superstructure getSuperstructure() {
-        return Superstructure;
-    }
-
-    public void setSuperstructure(Superstructure superstructure) {
-        Superstructure = superstructure;
+       this.Bridge.displaySectionInfo();
+       this.FwdHull.displaySectionInfo();
+       this.MidHull.displaySectionInfo();
+       this.AftHull.displaySectionInfo();
     }
 }

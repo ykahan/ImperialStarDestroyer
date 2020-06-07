@@ -1,6 +1,6 @@
 package Hull;
 
-public class HullSection {
+public abstract class HullSection {
     private String IDNumber;
     private String SectionType;
     private int CostToBuild;
@@ -10,14 +10,23 @@ public class HullSection {
     private int Weight;
     private boolean Assembled;
 
-    public HullSection(String id){
+    public HullSection(String id, String SectionType, int CostToBuild, int Length, int Height,
+                       int Width, int Weight, boolean Assembled){
         this.IDNumber = id;
+        this.SectionType = SectionType;
+        this.CostToBuild = CostToBuild;
+        this.Length = Length;
+        this.Height = Height;
+        this.Width = Width;
+        this.Weight = Weight;
+        this.Assembled = Assembled;
     }
 
     public void displaySectionInfo(){
         System.out.println(this.toString());
     }
 
+    @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("\nSection Type: " + SectionType);
@@ -29,5 +38,13 @@ public class HullSection {
         sb.append("\nWeight: " + Weight + " metric tons");
         sb.append("\nAssembled: " + Assembled + "\n");
         return sb.toString();
+    }
+
+    public int getCostToBuild() {
+        return CostToBuild;
+    }
+
+    public int getWeight() {
+        return Weight;
     }
 }
