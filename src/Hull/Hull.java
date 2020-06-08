@@ -4,11 +4,11 @@ public class Hull {
     private FwdHullSection FwdHull;
     private MidHullSection MidHull;
     private AftHullSection AftHull;
-    private Superstructure Bridge;
+    private Bridge Bridge;
     private int Weight;
     private double CostToBuild;
 
-    public Hull(FwdHullSection fwdHull, MidHullSection midHull, AftHullSection aftHull, Superstructure bridge){
+    public Hull(FwdHullSection fwdHull, MidHullSection midHull, AftHullSection aftHull, Bridge bridge){
         this.FwdHull = fwdHull;
         this.MidHull = midHull;
         this.AftHull = aftHull;
