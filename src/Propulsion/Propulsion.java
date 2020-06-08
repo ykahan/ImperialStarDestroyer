@@ -5,13 +5,13 @@ public class Propulsion {
     private IonEngine PortEngine;
     private IonEngine StarboardEngine;
     private Hyperdrive LSEngine;
-    private int CostToBuild;
+    private double CostToBuild;
 
     public Propulsion(IonEngine port, IonEngine starboard, Hyperdrive LS){
         this.PortEngine = port;
         this.StarboardEngine = starboard;
         this.LSEngine = LS;
-        this.CostToBuild = port.getCostToBuild() + starboard.getCostToBuild() + LS.getCostToBuild();
+        this.CostToBuild = port.getCost() + starboard.getCost() + LS.getCost();
     }
 
     @Override
@@ -25,5 +25,9 @@ public class Propulsion {
 
     public void displayPropulsionSpecs(){
         System.out.println(this.toString());
+    }
+
+    public double getCost(){
+        return this.CostToBuild;
     }
 }

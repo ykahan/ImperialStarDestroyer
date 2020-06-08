@@ -6,7 +6,7 @@ public class Armament {
     private String IDNumber;
     private TurboLaserCannon[] MainBattery;
     private HeavyIonCannon[] SecondaryBattery;
-    private int CostToBuild;
+    private double CostToBuild;
 
     public Armament(){
         this.IDNumber = IDGenerator.getUniqueID();
@@ -29,6 +29,10 @@ public class Armament {
         int costIon = this.MainBattery[0].getCost();
 
         this.CostToBuild = (costHeavy * this.SecondaryBattery.length) + (costIon * this.MainBattery.length);
+    }
+
+    public double getCost(){
+        return this.CostToBuild;
     }
 
     @Override

@@ -36,7 +36,7 @@ public abstract class HullSection {
         sb.append("\nHeight: " + Height);
         sb.append("\nWidth: " + Width);
         sb.append("\nWeight: " + Weight + " metric tons");
-        sb.append("\nAssembled: " + Assembled + "\n");
+        sb.append("\nInstalled: " + Assembled + "\n");
         return sb.toString();
     }
 

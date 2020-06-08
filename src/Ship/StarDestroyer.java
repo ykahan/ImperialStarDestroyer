@@ -1,30 +1,65 @@
 package Ship;
 
 import Armament.Armament;
-import Hull.Hull;
+import Hull.*;
+import IDGenerator.IDGenerator;
+import Location.Location;
+import Propulsion.Hyperdrive;
+import Propulsion.IonEngine;
 import Propulsion.Propulsion;
-import Supporting.Location;
 
-public abstract class StarDestroyer {
-    private static final String ShipType = "Star Destroyer";
-    private String ShipNumber;
-    private String ShipName;
-    private String ShipClass;
-    private int ShipCrew;
-    private double ShipCost;
-    private Hull ShipMainHull;
-    private Propulsion ShipPropulsion;
-    private Armament ShipArmament;
-    private Location ShipLocation;
+public abstract class StarDestroyer implements Maneuvers, ShipMovement, ShipCombat {
+    protected static final String ShipType = "Star Destroyer";
+    protected String ShipNumber;
+    protected String ShipName;
+    protected Classes ShipClass;
+    protected int ShipCrew;
+    protected double ShipCost;
+    protected Hull ShipMainHull;
+    protected Propulsion ShipPropulsion;
+    protected Armament ShipArmament;
+    protected Location ShipLocation;
 
-    public StarDestroyer(String ShipNumber, String ShipName, String ShipClass, int ShipCrew, Hull ShipMainHull, Propulsion ShipPropulsion, Armament ShipArmament, Location ShipLocation) {
-        this.ShipNumber = ShipNumber;
+    public StarDestroyer(String ShipName, Classes ShipClass) {
         this.ShipName = ShipName;
         this.ShipClass = ShipClass;
-        this.ShipCrew = ShipCrew;
-        this.ShipMainHull = ShipMainHull;
-        this.ShipPropulsion = ShipPropulsion;
-        this.ShipLocation = ShipLocation;
+        String ShipNumber = IDGenerator.getUniqueID();
+
+        FwdHullSection fwd = new FwdHullSection(IDGenerator.getUniqueID());
+        MidHullSection mid = new MidHullSection(IDGenerator.getUniqueID());
+        AftHullSection aft = new AftHullSection(IDGenerator.getUniqueID());
+        Superstructure bridge = new Superstructure(IDGenerator.getUniqueID());
+        Hull hull = new Hull(fwd, mid, aft, bridge);
+
+        IonEngine ion1 = new IonEngine(IDGenerator.getUniqueID());
+        IonEngine ion2 = new IonEngine(IDGenerator.getUniqueID());
+        Hyperdrive hyper = new Hyperdrive(IDGenerator.getUniqueID());
+        Propulsion prop = new Propulsion(ion1, ion2, hyper);
+
+        Armament armament = new Armament();
+
+        Location loc = new Location();
+
+        double componentsCost = this.ShipArmament.getCost() + this.ShipMainHull.getCost() + this.ShipPropulsion.getCost();
+        double multiplier = 0;
+        if (this.ShipClass.equals(Classes.IMPERIAL_II)) {
+            multiplier = 1.75;
+            this.ShipCrew = 9100;
+        } else if (this.ShipClass.equals(Classes.IMPERIAL_I)) {
+            multiplier = 1.25;
+            this.ShipCrew = 7500;
+        }
+        this.ShipCost = multiplier * componentsCost;
+    }
+
+    public void navigatesToPosition(String position) {
+        System.out.println("Ship #" + ShipNumber + " is a " + ShipClass +
+                " Star Destroyer and in currently traveling to " + position + ".");
+    }
+
+    public void orbitsPlanet(String planet) {
+        System.out.println("Ship #" + ShipNumber + " is a " + ShipClass +
+                " Star Destroyer and in currently orbiting " + planet + ".");
     }
 
     public void displayShipInfo() {
@@ -45,7 +80,6 @@ public abstract class StarDestroyer {
     public abstract void fireMainBatteries(String tgt);
 
     public abstract void fireSecondaryBatteries(String tgts);
-
 
 
 }

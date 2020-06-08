@@ -3,7 +3,7 @@ package Propulsion;
 public abstract class Engine {
     private String IDNumber;
     private String EngineType;
-    private int CostToBuild;
+    private double CostToBuild;
     private int MaxThrust;
     private int Weight;
     private int FuelCapacity;
@@ -35,7 +35,7 @@ public abstract class Engine {
         System.out.println(this.toString());
     }
 
-    public int getCostToBuild() {
-        return CostToBuild;
+    public double getCost(){
+        return this.CostToBuild;
     }
 }
