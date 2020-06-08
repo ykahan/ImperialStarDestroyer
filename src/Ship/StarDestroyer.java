@@ -28,7 +28,7 @@ public abstract class StarDestroyer implements Maneuvers, ShipMovement, ShipComb
         FwdHullSection fwd = new FwdHullSection(IDGenerator.getUniqueID());
         MidHullSection mid = new MidHullSection(IDGenerator.getUniqueID());
         AftHullSection aft = new AftHullSection(IDGenerator.getUniqueID());
-        Superstructure bridge = new Superstructure(IDGenerator.getUniqueID());
+        Bridge bridge = new Bridge(IDGenerator.getUniqueID());
         Hull hull = new Hull(fwd, mid, aft, bridge);
 
         IonEngine ion1 = new IonEngine(IDGenerator.getUniqueID());
@@ -71,15 +71,35 @@ public abstract class StarDestroyer implements Maneuvers, ShipMovement, ShipComb
         System.out.println("Location: " + this.ShipLocation.toString());
     }
 
-    public abstract void moveForward();
+    public void moveForward(){
+        System.out.println(this.ShipName + " moves forward!");
+    }
 
-    public abstract void turnToStarboard();
+    public void turnToStarboard(){
+        System.out.println(this.ShipName + " turns to starboard!");
+    }
 
-    public abstract void turnToPort();
+    public void turnToPort(){
+        System.out.println(this.ShipName + " turns to port!");
+    }
 
-    public abstract void fireMainBatteries(String tgt);
+    public void fireMainBatteries(String tgt){
+        System.out.println(this.ShipName + " is firing main weapon!");
+        for(int i = 0; i < 17; i += 4){
+            int min = i + 1;
+            int max = i + 4;
+            System.out.println("\nTurbo Laser Cannon Batteries " + min + " through " + max + " fire upon " + tgt);
+        }
+    }
 
-    public abstract void fireSecondaryBatteries(String tgts);
+    public void fireSecondaryBatteries(String tgt){
+        System.out.println(this.ShipName + " is firing secondary weapon!");
+        for(int i = 0; i < 37; i += 4){
+            int min = i + 1;
+            int max = i + 4;
+            System.out.println("\nHeavy Ion Cannon Batteries " + min + " through " + max + " fire upon " + tgt);
+        }
+    }
 
 
 }
