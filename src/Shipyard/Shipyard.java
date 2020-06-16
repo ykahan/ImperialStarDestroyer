@@ -16,9 +16,9 @@ import Ship.*;
 
 
 public abstract class Shipyard {
-    Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
-    public ArrayList<StarDestroyer> buildStarDestroyer(int type1Count, int type2Count, TreeMap registry) {
+    public static ArrayList<StarDestroyer> buildStarDestroyer(int type1Count, int type2Count, TreeMap registry) {
         ArrayList<Armament> arms1 = buildArmament(type1Count);
         ArrayList<Armament> arms2 = buildArmament(type2Count);
 
@@ -38,7 +38,7 @@ public abstract class Shipyard {
         return allShips;
     }
 
-    public ArrayList<StarDestroyer> buildShips(int type, int count, ArrayList<Armament> arms, ArrayList<Propulsion> props,
+    public static ArrayList<StarDestroyer> buildShips(int type, int count, ArrayList<Armament> arms, ArrayList<Propulsion> props,
                                                ArrayList<Hull> hulls) {
         ArrayList<StarDestroyer> ships = new ArrayList<>();
         for (int current = 0; current < count; current++) {
@@ -52,7 +52,7 @@ public abstract class Shipyard {
         return ships;
     }
 
-    public ArrayList<Armament> buildArmament(int armsCount) {
+    public static ArrayList<Armament> buildArmament(int armsCount) {
         ArrayList<Armament> arms = new ArrayList<>();
         for (int armament = 0; armament < armsCount; armament++) {
             Armament armamentCurrent = new Armament();
@@ -61,7 +61,7 @@ public abstract class Shipyard {
         return arms;
     }
 
-    public ArrayList<Propulsion> buildPropulsion(int propulsionCount) {
+    public static ArrayList<Propulsion> buildPropulsion(int propulsionCount) {
         ArrayList<Propulsion> props = new ArrayList<>();
         for (int propNumber = 0; propNumber < propulsionCount; propNumber++) {
             IonEngine port = new IonEngine(IDGenerator.getUniqueID());
@@ -73,7 +73,7 @@ public abstract class Shipyard {
         return props;
     }
 
-    public ArrayList<Hull> buildHulls(int hullCount) {
+    public static ArrayList<Hull> buildHulls(int hullCount) {
         ArrayList<Hull> hulls = new ArrayList<>();
         for (int hullNumber = 0; hullNumber < hullCount; hullNumber++) {
             FwdHullSection fwd = new FwdHullSection(IDGenerator.getUniqueID());
