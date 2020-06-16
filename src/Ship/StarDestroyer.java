@@ -4,8 +4,6 @@ import Armament.Armament;
 import Hull.*;
 import IDGenerator.IDGenerator;
 import Location.Location;
-import Propulsion.Hyperdrive;
-import Propulsion.IonEngine;
 import Propulsion.Propulsion;
 
 public abstract class StarDestroyer implements Maneuvers, ShipMovement, ShipCombat {
@@ -15,32 +13,25 @@ public abstract class StarDestroyer implements Maneuvers, ShipMovement, ShipComb
     protected Classes ShipClass;
     protected int ShipCrew;
     protected double ShipCost;
-    protected Hull ShipMainHull;
+    protected Hull ShipHull;
     protected Propulsion ShipPropulsion;
     protected Armament ShipArmament;
     protected Location ShipLocation;
 
-    public StarDestroyer(String ShipName, Classes ShipClass) {
+    public StarDestroyer(String ShipName, Classes ShipClass, Armament arm, Propulsion prop, Hull hull) {
         this.ShipName = ShipName;
         this.ShipClass = ShipClass;
-        String ShipNumber = IDGenerator.getUniqueID();
+        this.ShipNumber = IDGenerator.getUniqueID();
 
-        FwdHullSection fwd = new FwdHullSection(IDGenerator.getUniqueID());
-        MidHullSection mid = new MidHullSection(IDGenerator.getUniqueID());
-        AftHullSection aft = new AftHullSection(IDGenerator.getUniqueID());
-        Bridge bridge = new Bridge(IDGenerator.getUniqueID());
-        Hull hull = new Hull(fwd, mid, aft, bridge);
+        this.ShipHull = hull;
 
-        IonEngine ion1 = new IonEngine(IDGenerator.getUniqueID());
-        IonEngine ion2 = new IonEngine(IDGenerator.getUniqueID());
-        Hyperdrive hyper = new Hyperdrive(IDGenerator.getUniqueID());
-        Propulsion prop = new Propulsion(ion1, ion2, hyper);
+        this.ShipPropulsion = prop;
 
-        Armament armament = new Armament();
+        this.ShipArmament = arm;
 
         Location loc = new Location();
 
-        double componentsCost = this.ShipArmament.getCost() + this.ShipMainHull.getCost() + this.ShipPropulsion.getCost();
+        double componentsCost = this.ShipArmament.getCost() + this.ShipHull.getCost() + this.ShipPropulsion.getCost();
         double multiplier = 0;
         if (this.ShipClass.equals(Classes.IMPERIAL_II)) {
             multiplier = 1.75;

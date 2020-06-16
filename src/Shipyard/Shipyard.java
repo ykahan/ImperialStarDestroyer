@@ -19,22 +19,34 @@ public abstract class Shipyard {
     Scanner scanner = new Scanner(System.in);
 
     public ArrayList<StarDestroyer> buildStarDestroyer(int type1Count, int type2Count, TreeMap registry) {
-        ArrayList<StarDestroyer> type1s = buildShips(1, type1Count);
-        ArrayList<StarDestroyer> type2s = buildShips(2, type2Count);
-        ArrayList<StarDestroyer> all = new ArrayList<>();
-        all.addAll(type1s);
-        all.addAll(type2s);
-        return all;
+        ArrayList<Armament> arms1 = buildArmament(type1Count);
+        ArrayList<Armament> arms2 = buildArmament(type2Count);
+
+        ArrayList<Propulsion> props1 = buildPropulsion(type1Count);
+        ArrayList<Propulsion> props2 = buildPropulsion(type2Count);
+
+        ArrayList<Hull> hulls1 = buildHulls(type1Count);
+        ArrayList<Hull> hulls2 = buildHulls(type2Count);
+
+        ArrayList<StarDestroyer> type1s = buildShips(1, type1Count, arms1, props1, hulls1);
+        ArrayList<StarDestroyer> type2s = buildShips(2, type2Count, arms2, props2, hulls2);
+
+        ArrayList<StarDestroyer> allShips = new ArrayList<>();
+        allShips.addAll(type1s);
+        allShips.addAll(type2s);
+
+        return allShips;
     }
 
-    public ArrayList<StarDestroyer> buildShips(int type, int count) {
+    public ArrayList<StarDestroyer> buildShips(int type, int count, ArrayList<Armament> arms, ArrayList<Propulsion> props,
+                                               ArrayList<Hull> hulls) {
         ArrayList<StarDestroyer> ships = new ArrayList<>();
-        for (int currentShip = 0; currentShip < count; currentShip++) {
+        for (int current = 0; current < count; current++) {
             System.out.println("Please provide name for Type " + type + " ship.");
             String name = scanner.nextLine();
             StarDestroyer ship = null;
-            if(type == 1) ship = new Type1(name);
-            if(type == 2) ship = new Type2(name);
+            if(type == 1) ship = new Type1(name, arms.get(current), props.get(current), hulls.get(current));
+            if(type == 2) ship = new Type2(name, arms.get(current), props.get(current), hulls.get(current));
             ships.add(ship);
         }
         return ships;
