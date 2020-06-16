@@ -16,7 +16,6 @@ import Ship.*;
 
 
 public abstract class Shipyard {
-    private static Scanner scanner = new Scanner(System.in);
 
     public static ArrayList<StarDestroyer> buildStarDestroyer(int type1Count, int type2Count, TreeMap registry) {
         ArrayList<Armament> arms1 = buildArmament(type1Count);
@@ -42,8 +41,10 @@ public abstract class Shipyard {
                                                ArrayList<Hull> hulls) {
         ArrayList<StarDestroyer> ships = new ArrayList<>();
         for (int current = 0; current < count; current++) {
+            Scanner scanner = new Scanner(System.in);
             System.out.println("Please provide name for Type " + type + " ship.");
             String name = scanner.nextLine();
+            scanner.close();
             StarDestroyer ship = null;
             if(type == 1) ship = new Type1(name, arms.get(current), props.get(current), hulls.get(current));
             if(type == 2) ship = new Type2(name, arms.get(current), props.get(current), hulls.get(current));
