@@ -47,8 +47,24 @@ public abstract class StarDestroyer implements Maneuvers, ShipMovement, ShipComb
         return this.ShipName;
     }
 
+    public void displayIntro(){
+        System.out.println("======================");
+        System.out.println(getShipName());
+    }
+
     public void displayPropulsionSpecs(){
+        displayIntro();
         this.ShipPropulsion.displayPropulsionSpecs();
+    }
+
+    public void displayArmamentSpects(){
+        displayIntro();
+        this.ShipArmament.displayArmamentSpecs();
+    }
+
+    public void displayHullSpecs(){
+        displayIntro();
+        this.ShipHull.displayHullSpecs();
     }
 
     public void navigatesToPosition(String position) {
@@ -85,6 +101,7 @@ public abstract class StarDestroyer implements Maneuvers, ShipMovement, ShipComb
     }
 
     public void fireMainBatteries(String tgt){
+        System.out.println("======================");
         System.out.println(this.ShipName + " is firing main weapon!");
         for(int i = 0; i < 17; i += 4){
             int min = i + 1;
@@ -94,6 +111,7 @@ public abstract class StarDestroyer implements Maneuvers, ShipMovement, ShipComb
     }
 
     public void fireSecondaryBatteries(String tgt){
+        System.out.println("======================");
         System.out.println(this.ShipName + " is firing secondary weapon!");
         for(int i = 0; i < 37; i += 4){
             int min = i + 1;

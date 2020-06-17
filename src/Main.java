@@ -11,8 +11,13 @@ public class Main {
         for(StarDestroyer sd : fleet){
             sd.displayShipInfo();
         }
+
         for(StarDestroyer sd : fleet){
             if(sd.getShipName().contains("Strangler")) sd.displayPropulsionSpecs();
+            if(sd.getShipName().contains("Ravager")) sd.displayArmamentSpects();
+            if(sd.getShipName().contains("Crusher")) sd.displayHullSpecs();
+            if(sd.getShipName().contains("Ransacker")) sd.fireMainBatteries("Rebel Base");
+            if(sd.getShipName().contains("Obliterator")) sd.fireSecondaryBatteries("X-Wing Fighters");
         }
     }
 }
