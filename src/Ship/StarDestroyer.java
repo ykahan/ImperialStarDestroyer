@@ -29,7 +29,7 @@ public abstract class StarDestroyer implements Maneuvers, ShipMovement, ShipComb
 
         this.ShipArmament = arm;
 
-        Location loc = new Location();
+        this.ShipLocation = new Location();
 
         double componentsCost = this.ShipArmament.getCost() + this.ShipHull.getCost() + this.ShipPropulsion.getCost();
         double multiplier = 0;
@@ -43,6 +43,14 @@ public abstract class StarDestroyer implements Maneuvers, ShipMovement, ShipComb
         this.ShipCost = multiplier * componentsCost;
     }
 
+    public String getShipName(){
+        return this.ShipName;
+    }
+
+    public void displayPropulsionSpecs(){
+        this.ShipPropulsion.displayPropulsionSpecs();
+    }
+
     public void navigatesToPosition(String position) {
         System.out.println("Ship #" + ShipNumber + " is a " + ShipClass +
                 " Star Destroyer and in currently traveling to " + position + ".");
@@ -54,6 +62,8 @@ public abstract class StarDestroyer implements Maneuvers, ShipMovement, ShipComb
     }
 
     public void displayShipInfo() {
+        System.out.println();
+        System.out.println("==========================");
         System.out.println("Name: " + this.ShipName);
         System.out.println("Class: " + this.ShipClass);
         System.out.println("Number: " + this.ShipNumber);
