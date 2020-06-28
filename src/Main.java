@@ -7,7 +7,7 @@ import java.util.TreeMap;
 public class Main {
     public static void main(String[] args) {
         TreeMap registry = new TreeMap();
-        ArrayList<StarDestroyer> fleet = Shipyard.buildStarDestroyers(9, 9, registry);
+        ArrayList<StarDestroyer> fleet = Shipyard.buildStarDestroyers(1, 0, registry);
         for(StarDestroyer sd : fleet){
             sd.displayShipInfo();
         }
@@ -19,5 +19,6 @@ public class Main {
             if(sd.getShipName().contains("Ransacker")) sd.fireMainBatteries("Rebel Base");
             if(sd.getShipName().contains("Obliterator")) sd.fireSecondaryBatteries("X-Wing Fighters");
         }
+
     }
 }

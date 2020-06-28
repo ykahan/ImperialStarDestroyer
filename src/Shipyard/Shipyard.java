@@ -41,14 +41,37 @@ public abstract class Shipyard {
                                                ArrayList<Hull> hulls) {
         ArrayList<StarDestroyer> ships = new ArrayList<>();
         for (int current = 0; current < count; current++) {
-            System.out.println("Please provide name for Type " + type + " ship.");
-            String name = scanner.nextLine();
-            StarDestroyer ship = null;
-            if(type == 1) ship = new Type1(name, arms.get(current), props.get(current), hulls.get(current));
-            if(type == 2) ship = new Type2(name, arms.get(current), props.get(current), hulls.get(current));
+            String name = getNameFromUser(type);
+            StarDestroyer ship = buildShip(type, arms, props, hulls, current, name);
+            setLocation(name, ship);
             ships.add(ship);
+
         }
         return ships;
+    }
+
+    private static StarDestroyer buildShip(int type, ArrayList<Armament> arms, ArrayList<Propulsion> props, ArrayList<Hull> hulls, int current, String name) {
+        StarDestroyer ship = null;
+        if(type == 1) ship = new Type1(name, arms.get(current), props.get(current), hulls.get(current));
+        if(type == 2) ship = new Type2(name, arms.get(current), props.get(current), hulls.get(current));
+        return ship;
+    }
+
+    private static String getNameFromUser(int type) {
+        System.out.println("Please provide name for Type " + type + " ship.");
+        return scanner.nextLine();
+    }
+
+    private static void setLocation(String name, StarDestroyer ship) {
+        System.out.println("Please provide x value for location of the " + name);
+        String x = scanner.nextLine();
+        System.out.println("Please provide y value for location of the " + name);
+        String y = scanner.nextLine();
+        System.out.println("Please provide z value for location of the " + name);
+        String z = scanner.nextLine();
+        ship.changeX(x);
+        ship.changeY(y);
+        ship.changeZ(z);
     }
 
     public static ArrayList<Armament> buildArmament(int armsCount) {
