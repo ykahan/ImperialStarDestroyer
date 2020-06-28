@@ -39,7 +39,7 @@ public class Armament {
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("\nArmament ID #" + IDNumber);
-        sb.append("\nMain Battery: " + MainBattery.length + " Turbo Laser Cannons");
+        sb.append("\nShipyard.Main Battery: " + MainBattery.length + " Turbo Laser Cannons");
         sb.append("\nSecondary Battery: " + SecondaryBattery.length + " Heavy Ion Cannons");
         sb.append("\nCost to build: " + CostToBuild + " Palpatines");
         return sb.toString();

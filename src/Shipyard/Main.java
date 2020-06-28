@@ -29,9 +29,7 @@ public class Main {
 //        for(StarDestroyer sd : fleet){
 //            sd.displayShipInfo();
 //        }
-        for(Map.Entry<String, Location> entry: registry.entrySet()){
 
-        }
 
 //        for(StarDestroyer sd : fleet){
 //            if(sd.getShipName().contains("Strangler")) sd.displayPropulsionSpecs();
