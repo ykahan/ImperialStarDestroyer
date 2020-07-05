@@ -1,6 +1,9 @@
-package Shipyard;
+package Main;
 
-import Location.Location;
+import Shipyard.Shipyard;
+import TypeAndLocation.Type;
+import TypeAndLocation.TypeLocation;
+import TypeAndLocation.Location;
 import Ship.StarDestroyer;
 
 import java.util.*;

@@ -1,4 +1,4 @@
-package Location;
+package TypeAndLocation;
 
 public class Location {
     private int x;

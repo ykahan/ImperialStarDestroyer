@@ -1,6 +1,4 @@
-package Shipyard;
-
-import Location.Location;
+package TypeAndLocation;
 
 public class TypeLocation {
     private Type type;
