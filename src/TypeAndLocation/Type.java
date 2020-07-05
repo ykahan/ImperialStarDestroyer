@@ -1,7 +1,7 @@
 package TypeAndLocation;
 
 public enum Type {
-    TYPE_I,
-    TYPE_II;
+    Imperial_Class_1_Star_Destroyer,
+    Imperial_Class_2_Star_Destroyer;
 
 }

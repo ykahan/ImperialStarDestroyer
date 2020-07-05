@@ -34,10 +34,10 @@ public abstract class StarDestroyer implements Maneuvers, ShipMovement, ShipComb
 
         double componentsCost = this.ShipArmament.getCost() + this.ShipHull.getCost() + this.ShipPropulsion.getCost();
         double multiplier = 0;
-        if (this.type.equals(Type.TYPE_II)) {
+        if (this.type.equals(Type.Imperial_Class_2_Star_Destroyer)) {
             multiplier = 1.75;
             this.ShipCrew = 9100;
-        } else if (this.type.equals(Type.TYPE_II)) {
+        } else if (this.type.equals(Type.Imperial_Class_2_Star_Destroyer)) {
             multiplier = 1.25;
             this.ShipCrew = 7500;
         }

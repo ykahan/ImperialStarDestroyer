@@ -1,7 +1,6 @@
 package Shipyard;
 
 import Hull.*;
-import IDGenerator.IDGenerator;
 import TypeAndLocation.Location;
 import Propulsion.Propulsion;
 import Ship.StarDestroyer;
@@ -52,8 +51,8 @@ public abstract class Shipyard {
 
         Armament armament = new Armament();
 
-        if (type.equals(Type.TYPE_I)) ship = new Type1(name, armament, prop, hull);
-        if (type.equals(Type.TYPE_II)) ship = new Type2(name, armament, prop, hull);
+        if (type.equals(Type.Imperial_Class_1_Star_Destroyer)) ship = new Type1(name, armament, prop, hull);
+        if (type.equals(Type.Imperial_Class_2_Star_Destroyer)) ship = new Type2(name, armament, prop, hull);
         setLocation(ship, loc);
 
         return ship;

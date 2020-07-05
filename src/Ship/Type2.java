@@ -7,6 +7,6 @@ import TypeAndLocation.Type;
 public class Type2 extends StarDestroyer{
 
     public Type2(String ShipName, Armament arm, Propulsion prop, Hull hull){
-        super(ShipName, Type.TYPE_II, arm, prop, hull);
+        super(ShipName, Type.Imperial_Class_2_Star_Destroyer, arm, prop, hull);
     }
 }
