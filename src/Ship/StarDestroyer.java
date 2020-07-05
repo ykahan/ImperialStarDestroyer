@@ -3,7 +3,7 @@ package Ship;
 import Armament.Armament;
 import Hull.*;
 import IDGenerator.IDGenerator;
-import Location.Location;
+import TypeAndLocation.Location;
 import Propulsion.Propulsion;
 
 public abstract class StarDestroyer implements Maneuvers, ShipMovement, ShipCombat {

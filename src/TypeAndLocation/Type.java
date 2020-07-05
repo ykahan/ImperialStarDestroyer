@@ -1,4 +1,4 @@
-package Shipyard;
+package TypeAndLocation;
 
 public enum Type {
     TYPE_I,

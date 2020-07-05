@@ -2,7 +2,7 @@ package Shipyard;
 
 import Hull.*;
 import IDGenerator.IDGenerator;
-import Location.Location;
+import TypeAndLocation.Location;
 import Propulsion.Propulsion;
 import Ship.StarDestroyer;
 
@@ -12,6 +12,8 @@ import Propulsion.IonEngine;
 import Propulsion.Hyperdrive;
 import Armament.*;
 import Ship.*;
+import TypeAndLocation.Type;
+import TypeAndLocation.TypeLocation;
 
 
 public abstract class Shipyard {
