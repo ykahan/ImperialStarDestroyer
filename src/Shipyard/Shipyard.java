@@ -2,12 +2,11 @@ package Shipyard;
 
 import Hull.*;
 import IDGenerator.IDGenerator;
+import Location.Location;
 import Propulsion.Propulsion;
 import Ship.StarDestroyer;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.TreeMap;
+import java.util.*;
 
 import Propulsion.IonEngine;
 import Propulsion.Hyperdrive;
@@ -17,43 +16,50 @@ import Ship.*;
 
 public abstract class Shipyard {
     private static Scanner scanner = new Scanner(System.in);
-    public static ArrayList<StarDestroyer> buildStarDestroyers(int type1Count, int type2Count, TreeMap registry) {
-        ArrayList<Armament> arms1 = buildArmament(type1Count);
-        ArrayList<Armament> arms2 = buildArmament(type2Count);
+    public static List<StarDestroyer> buildStarDestroyers(int type1Count, int type2Count, TreeMap registry) {
+        List<Armament> arms1 = buildArmament(type1Count);
+        List<Armament> arms2 = buildArmament(type2Count);
 
-        ArrayList<Propulsion> props1 = buildPropulsion(type1Count);
-        ArrayList<Propulsion> props2 = buildPropulsion(type2Count);
+        List<Propulsion> props1 = buildPropulsion(type1Count);
+        List<Propulsion> props2 = buildPropulsion(type2Count);
 
-        ArrayList<Hull> hulls1 = buildHulls(type1Count);
-        ArrayList<Hull> hulls2 = buildHulls(type2Count);
+        List<Hull> hulls1 = buildHulls(type1Count);
+        List<Hull> hulls2 = buildHulls(type2Count);
 
-        ArrayList<StarDestroyer> type1s = buildShips(1, type1Count, arms1, props1, hulls1);
-        ArrayList<StarDestroyer> type2s = buildShips(2, type2Count, arms2, props2, hulls2);
+        List<StarDestroyer> type1s = buildShips(Type.TYPE_I, arms1, props1, hulls1, registry);
+        List<StarDestroyer> type2s = buildShips(Type.TYPE_II, arms2, props2, hulls2, registry);
 
-        ArrayList<StarDestroyer> allShips = new ArrayList<>();
+        List<StarDestroyer> allShips = new ArrayList<>();
         allShips.addAll(type1s);
         allShips.addAll(type2s);
 
         return allShips;
     }
 
-    public static ArrayList<StarDestroyer> buildShips(int type, int count, ArrayList<Armament> arms, ArrayList<Propulsion> props,
-                                               ArrayList<Hull> hulls) {
-        ArrayList<StarDestroyer> ships = new ArrayList<>();
-        for (int current = 0; current < count; current++) {
-            String name = getNameFromUser(type);
-            StarDestroyer ship = buildShip(type, arms, props, hulls, current, name);
-            setLocation(name, ship);
-            ships.add(ship);
+    public static List<StarDestroyer> buildShips(Type targetType, List<Armament> arms, List<Propulsion> props,
+                                               List<Hull> hulls, TreeMap<String, TypeLocation> registry) {
+        List<StarDestroyer> ships = new ArrayList<>();
+        Set<String> names = registry.keySet();
+        int count = 0;
+        for(String name: names){
+            TypeLocation tl = registry.get(name);
+            Type foundType = tl.getType();
 
+            if(foundType.equals(targetType)){
+                StarDestroyer ship = buildShip(targetType, arms, props, hulls, count, name);
+                count++;
+                setLocation(ship, tl.getLocation());
+                ships.add(ship);
+            }
         }
         return ships;
     }
 
-    private static StarDestroyer buildShip(int type, ArrayList<Armament> arms, ArrayList<Propulsion> props, ArrayList<Hull> hulls, int current, String name) {
+    private static StarDestroyer buildShip(Type type, List<Armament> arms, List<Propulsion> props,
+                                           List<Hull> hulls, int index, String name) {
         StarDestroyer ship = null;
-        if(type == 1) ship = new Type1(name, arms.get(current), props.get(current), hulls.get(current));
-        if(type == 2) ship = new Type2(name, arms.get(current), props.get(current), hulls.get(current));
+        if(type.equals(Type.TYPE_I)) ship = new Type1(name, arms.get(index), props.get(index), hulls.get(index));
+        if(type.equals(Type.TYPE_II)) ship = new Type2(name, arms.get(index), props.get(index), hulls.get(index));
         return ship;
     }
 
@@ -62,16 +68,25 @@ public abstract class Shipyard {
         return scanner.nextLine();
     }
 
+    private static void setLocation(StarDestroyer ship, Location location){
+        ship.changeX(location.getX());
+        ship.changeY(location.getY());
+        ship.changeZ(location.getZ());
+    }
+
     private static void setLocation(String name, StarDestroyer ship) {
         System.out.println("Please provide x value for location of the " + name);
         String x = scanner.nextLine();
+        int xInt = Integer.parseInt(x);
         System.out.println("Please provide y value for location of the " + name);
         String y = scanner.nextLine();
+        int yInt = Integer.parseInt(y);
         System.out.println("Please provide z value for location of the " + name);
         String z = scanner.nextLine();
-        ship.changeX(x);
-        ship.changeY(y);
-        ship.changeZ(z);
+        Integer zInt = Integer.parseInt(z);
+        ship.changeX(xInt);
+        ship.changeY(yInt);
+        ship.changeZ(zInt);
     }
 
     public static ArrayList<Armament> buildArmament(int armsCount) {

@@ -43,19 +43,16 @@ public abstract class StarDestroyer implements Maneuvers, ShipMovement, ShipComb
         this.ShipCost = multiplier * componentsCost;
     }
 
-    public void changeX(String x){
-        int xInt = Integer.parseInt(x);
-        this.ShipLocation.changeX(xInt);
+    public void changeX(int x){
+        this.ShipLocation.changeX(x);
     }
 
-    public void changeY(String y){
-        int yInt = Integer.parseInt(y);
-        this.ShipLocation.changeY(yInt);
+    public void changeY(int y){
+        this.ShipLocation.changeY(y);
     }
 
-    public void changeZ(String z){
-        int zInt = Integer.parseInt(z);
-        this.ShipLocation.changeZ(zInt);
+    public void changeZ(int z){
+        this.ShipLocation.changeZ(z);
     }
 
     public String getShipName(){

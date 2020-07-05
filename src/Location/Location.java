@@ -17,6 +17,18 @@ public class Location {
         this.z = 0;
     }
 
+    public int getX(){
+        return this.x;
+    }
+
+    public int getY(){
+        return this.y;
+    }
+
+    public int getZ(){
+        return this.z;
+    }
+
     public void changeX(int xOffset){
         this.x += xOffset;
     }

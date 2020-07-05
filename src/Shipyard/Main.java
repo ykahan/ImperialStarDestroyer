@@ -1,6 +1,7 @@
 package Shipyard;
 
 import Location.Location;
+import Ship.StarDestroyer;
 
 import java.util.*;
 
@@ -25,19 +26,19 @@ public class Main {
         registry.put("ISS-90 Wrecker", new TypeLocation(Type.TYPE_II, new Location(30, 50, 22)));
         registry.put("ISS-98 Sacker", new TypeLocation(Type.TYPE_II, new Location(20, 55, 24)));
         registry.put("ISS-200 Obliterator", new TypeLocation(Type.TYPE_II, new Location(10, 60, 26)));
-//        ArrayList<StarDestroyer> fleet = Shipyard.buildStarDestroyers(9, 9, registry);
-//        for(StarDestroyer sd : fleet){
-//            sd.displayShipInfo();
-//        }
+        List<StarDestroyer> fleet = Shipyard.buildStarDestroyers(9, 9, registry);
+        for(StarDestroyer sd : fleet){
+            sd.displayShipInfo();
+        }
 
 
-//        for(StarDestroyer sd : fleet){
-//            if(sd.getShipName().contains("Strangler")) sd.displayPropulsionSpecs();
-//            if(sd.getShipName().contains("Ravager")) sd.displayArmamentSpects();
-//            if(sd.getShipName().contains("Crusher")) sd.displayHullSpecs();
-//            if(sd.getShipName().contains("Ransacker")) sd.fireMainBatteries("Rebel Base");
-//            if(sd.getShipName().contains("Obliterator")) sd.fireSecondaryBatteries("X-Wing Fighters");
-//        }
+        for(StarDestroyer sd : fleet){
+            if(sd.getShipName().contains("Strangler")) sd.displayPropulsionSpecs();
+            if(sd.getShipName().contains("Ravager")) sd.displayArmamentSpects();
+            if(sd.getShipName().contains("Crusher")) sd.displayHullSpecs();
+            if(sd.getShipName().contains("Ransacker")) sd.fireMainBatteries("Rebel Base");
+            if(sd.getShipName().contains("Obliterator")) sd.fireSecondaryBatteries("X-Wing Fighters");
+        }
 
     }
 }
