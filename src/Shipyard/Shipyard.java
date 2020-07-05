@@ -50,8 +50,10 @@ public abstract class Shipyard {
                         new Bridge()
                 );
 
-        if (type.equals(Type.TYPE_I)) ship = new Type1(name, new Armament(), prop, hull);
-        if (type.equals(Type.TYPE_II)) ship = new Type2(name, new Armament(), prop, hull);
+        Armament armament = new Armament();
+
+        if (type.equals(Type.TYPE_I)) ship = new Type1(name, armament, prop, hull);
+        if (type.equals(Type.TYPE_II)) ship = new Type2(name, armament, prop, hull);
         setLocation(ship, loc);
 
         return ship;
