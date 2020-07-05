@@ -2,10 +2,11 @@ package Ship;
 import Armament.Armament;
 import Hull.Hull;
 import Propulsion.Propulsion;
+import TypeAndLocation.Type;
 
 public class Type1 extends StarDestroyer{
 
     public Type1(String ShipName, Armament arm, Propulsion prop, Hull hull) {
-        super(ShipName, Classes.IMPERIAL_I , arm, prop, hull);
+        super(ShipName, Type.TYPE_I , arm, prop, hull);
     }
 }

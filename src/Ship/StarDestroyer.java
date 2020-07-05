@@ -5,12 +5,13 @@ import Hull.*;
 import IDGenerator.IDGenerator;
 import TypeAndLocation.Location;
 import Propulsion.Propulsion;
+import TypeAndLocation.Type;
 
 public abstract class StarDestroyer implements Maneuvers, ShipMovement, ShipCombat {
     protected static final String ShipType = "Star Destroyer";
     protected String ShipNumber;
     protected String ShipName;
-    protected Classes ShipClass;
+    protected Type type;
     protected int ShipCrew;
     protected double ShipCost;
     protected Hull ShipHull;
@@ -18,9 +19,9 @@ public abstract class StarDestroyer implements Maneuvers, ShipMovement, ShipComb
     protected Armament ShipArmament;
     protected Location ShipLocation;
 
-    public StarDestroyer(String ShipName, Classes ShipClass, Armament arm, Propulsion prop, Hull hull) {
+    public StarDestroyer(String ShipName, Type type, Armament arm, Propulsion prop, Hull hull) {
         this.ShipName = ShipName;
-        this.ShipClass = ShipClass;
+        this.type = type;
         this.ShipNumber = IDGenerator.getUniqueID();
 
         this.ShipHull = hull;
@@ -33,10 +34,10 @@ public abstract class StarDestroyer implements Maneuvers, ShipMovement, ShipComb
 
         double componentsCost = this.ShipArmament.getCost() + this.ShipHull.getCost() + this.ShipPropulsion.getCost();
         double multiplier = 0;
-        if (this.ShipClass.equals(Classes.IMPERIAL_II)) {
+        if (this.type.equals(Type.TYPE_II)) {
             multiplier = 1.75;
             this.ShipCrew = 9100;
-        } else if (this.ShipClass.equals(Classes.IMPERIAL_I)) {
+        } else if (this.type.equals(Type.TYPE_II)) {
             multiplier = 1.25;
             this.ShipCrew = 7500;
         }
@@ -80,12 +81,12 @@ public abstract class StarDestroyer implements Maneuvers, ShipMovement, ShipComb
     }
 
     public void navigatesToPosition(String position) {
-        System.out.println("Ship #" + ShipNumber + " is a " + ShipClass +
+        System.out.println("Ship #" + ShipNumber + " is a " + this.type +
                 " Star Destroyer and in currently traveling to " + position + ".");
     }
 
     public void orbitsPlanet(String planet) {
-        System.out.println("Ship #" + ShipNumber + " is a " + ShipClass +
+        System.out.println("Ship #" + ShipNumber + " is a " + this.type +
                 " Star Destroyer and in currently orbiting " + planet + ".");
     }
 
@@ -93,7 +94,7 @@ public abstract class StarDestroyer implements Maneuvers, ShipMovement, ShipComb
         System.out.println();
         System.out.println("==========================");
         System.out.println("Name: " + this.ShipName);
-        System.out.println("Class: " + this.ShipClass);
+        System.out.println("Class: " + this.type);
         System.out.println("Number: " + this.ShipNumber);
         System.out.println("Crew: " + this.ShipCrew);
         System.out.println("Cost: " + this.ShipCost);
