@@ -17,17 +17,9 @@ import Ship.*;
 public abstract class Shipyard {
     private static Scanner scanner = new Scanner(System.in);
     public static List<StarDestroyer> buildStarDestroyers(int type1Count, int type2Count, TreeMap registry) {
-        List<Armament> arms1 = buildArmament(type1Count);
-        List<Armament> arms2 = buildArmament(type2Count);
 
-        List<Propulsion> props1 = buildPropulsion(type1Count);
-        List<Propulsion> props2 = buildPropulsion(type2Count);
-
-        List<Hull> hulls1 = buildHulls(type1Count);
-        List<Hull> hulls2 = buildHulls(type2Count);
-
-        List<StarDestroyer> type1s = buildShips(Type.TYPE_I, arms1, props1, hulls1, registry);
-        List<StarDestroyer> type2s = buildShips(Type.TYPE_II, arms2, props2, hulls2, registry);
+        List<StarDestroyer> type1s = buildShips(Type.TYPE_I, registry);
+        List<StarDestroyer> type2s = buildShips(Type.TYPE_II, registry);
 
         List<StarDestroyer> allShips = new ArrayList<>();
         allShips.addAll(type1s);
@@ -36,18 +28,15 @@ public abstract class Shipyard {
         return allShips;
     }
 
-    public static List<StarDestroyer> buildShips(Type targetType, List<Armament> arms, List<Propulsion> props,
-                                               List<Hull> hulls, TreeMap<String, TypeLocation> registry) {
+    public static List<StarDestroyer> buildShips(Type targetType, TreeMap<String, TypeLocation> registry) {
         List<StarDestroyer> ships = new ArrayList<>();
         Set<String> names = registry.keySet();
-        int count = 0;
         for(String name: names){
             TypeLocation tl = registry.get(name);
             Type foundType = tl.getType();
 
             if(foundType.equals(targetType)){
-                StarDestroyer ship = buildShip(targetType, arms, props, hulls, count, name);
-                count++;
+                StarDestroyer ship = buildShip(targetType, name);
                 setLocation(ship, tl.getLocation());
                 ships.add(ship);
             }
@@ -55,11 +44,26 @@ public abstract class Shipyard {
         return ships;
     }
 
-    private static StarDestroyer buildShip(Type type, List<Armament> arms, List<Propulsion> props,
-                                           List<Hull> hulls, int index, String name) {
+    private static StarDestroyer buildShip(Type type, String name) {
         StarDestroyer ship = null;
-        if(type.equals(Type.TYPE_I)) ship = new Type1(name, arms.get(index), props.get(index), hulls.get(index));
-        if(type.equals(Type.TYPE_II)) ship = new Type2(name, arms.get(index), props.get(index), hulls.get(index));
+        if(type.equals(Type.TYPE_I)) ship = new Type1(name, new Armament(),
+                new Propulsion(new IonEngine(IDGenerator.getUniqueID()),
+                        new IonEngine(IDGenerator.getUniqueID()),
+                        new Hyperdrive(IDGenerator.getUniqueID())),
+                new Hull(new FwdHullSection(IDGenerator.getUniqueID()),
+                        new MidHullSection(IDGenerator.getUniqueID()),
+                        new AftHullSection(IDGenerator.getUniqueID()),
+                        new Bridge(IDGenerator.getUniqueID())));
+
+        if(type.equals(Type.TYPE_II)) ship = new Type2(name, new Armament(),
+                new Propulsion(new IonEngine(IDGenerator.getUniqueID()),
+                        new IonEngine(IDGenerator.getUniqueID()),
+                        new Hyperdrive(IDGenerator.getUniqueID())),
+                new Hull(new FwdHullSection(IDGenerator.getUniqueID()),
+                        new MidHullSection(IDGenerator.getUniqueID()),
+                        new AftHullSection(IDGenerator.getUniqueID()),
+                        new Bridge(IDGenerator.getUniqueID())));
+
         return ship;
     }
 
