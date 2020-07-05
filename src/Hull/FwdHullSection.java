@@ -1,8 +1,9 @@
 package Hull;
 
-public class FwdHullSection extends HullSection{
+import IDGenerator.IDGenerator;
 
-    public FwdHullSection(String id) {
-        super(id, "Fwd", 1800, 400, 150, 700, 900, false);
+public class FwdHullSection extends HullSection{
+    public FwdHullSection() {
+        super("Fwd", 1800, 400, 150, 700, 900, false);
     }
 }

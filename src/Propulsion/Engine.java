@@ -1,5 +1,7 @@
 package Propulsion;
 
+import IDGenerator.IDGenerator;
+
 public abstract class Engine {
     private String IDNumber;
     private String EngineType;
@@ -9,8 +11,8 @@ public abstract class Engine {
     private int FuelCapacity;
     private boolean Installed;
 
-    public Engine(String id, int CostToBuild, int MaxThrust, int Weight, int FuelCapacity, boolean Installed){
-        this.IDNumber = id;
+    public Engine(int CostToBuild, int MaxThrust, int Weight, int FuelCapacity, boolean Installed){
+        this.IDNumber =IDGenerator.getUniqueID();
         this.CostToBuild = CostToBuild;
         this.MaxThrust = MaxThrust;
         this.Weight = Weight;

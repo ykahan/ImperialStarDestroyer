@@ -1,5 +1,7 @@
 package Hull;
 
+import IDGenerator.IDGenerator;
+
 public abstract class HullSection {
     private String IDNumber;
     private String SectionType;
@@ -10,9 +12,9 @@ public abstract class HullSection {
     private int Weight;
     private boolean Assembled;
 
-    public HullSection(String id, String SectionType, int CostToBuild, int Length, int Height,
+    public HullSection(String SectionType, int CostToBuild, int Length, int Height,
                        int Width, int Weight, boolean Assembled){
-        this.IDNumber = id;
+        this.IDNumber = IDGenerator.getUniqueID();
         this.SectionType = SectionType;
         this.CostToBuild = CostToBuild;
         this.Length = Length;

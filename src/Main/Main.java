@@ -29,7 +29,7 @@ public class Main {
         registry.put("ISS-90 Wrecker", new TypeLocation(Type.TYPE_II, new Location(30, 50, 22)));
         registry.put("ISS-98 Sacker", new TypeLocation(Type.TYPE_II, new Location(20, 55, 24)));
         registry.put("ISS-200 Obliterator", new TypeLocation(Type.TYPE_II, new Location(10, 60, 26)));
-        List<StarDestroyer> fleet = Shipyard.buildStarDestroyers(9, 9, registry);
+        List<StarDestroyer> fleet = Shipyard.buildShips(registry);
         for(StarDestroyer sd : fleet){
             sd.displayShipInfo();
         }
